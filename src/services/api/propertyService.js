@@ -1,5 +1,7 @@
-import { delay } from '../index';
 import propertiesData from '../mockData/properties.json';
+
+// Local delay function to avoid circular dependency
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 let properties = [...propertiesData];
 
@@ -18,7 +20,7 @@ const propertyService = {
     return { ...property };
   },
 
-async create(propertyData) {
+  async create(propertyData) {
     await delay(400);
     const newProperty = {
       ...propertyData,
@@ -59,4 +61,6 @@ async create(propertyData) {
   }
 };
 
+// Export both named and default exports
+export { propertyService };
 export default propertyService;

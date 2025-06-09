@@ -1,4 +1,5 @@
-import { delay } from '../index';
+// Local delay utility to avoid circular dependencies
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 const contactService = {
   async sendContactForm(contactData) {
@@ -78,3 +79,4 @@ const contactService = {
 };
 
 export default contactService;
+export { contactService };

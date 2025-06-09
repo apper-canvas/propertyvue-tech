@@ -181,8 +181,8 @@ const Layout = () => {
         </div>
       </div>
 
-      {/* Main Content */}
-      <main className="flex-1 overflow-hidden pb-16 md:pb-0">
+{/* Main Content */}
+      <main className="flex-1 overflow-y-auto scrollbar-theme pb-16 md:pb-0">
         <Outlet />
       </main>
     </div>

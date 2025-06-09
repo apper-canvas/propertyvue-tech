@@ -5,7 +5,11 @@
 /* Import react-toastify CSS */
 @import 'react-toastify/dist/ReactToastify.css';
 
-/* Ensure scrollbars are visible */
+/* Global scroll and layout styles */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   overflow-y: auto;
   overflow-x: hidden;
@@ -18,19 +22,39 @@ body {
   max-width: 100%;
 }
 
-/* Main content areas must allow scroll */
+/* Main content areas with custom scrollbar */
 .main-content {
   overflow-y: auto;
   height: 100vh;
 }
 
 @layer utilities {
-  /* Only use scrollbar-hide for specific UI elements, never main content */
+  /* Hide scrollbar for specific UI elements only */
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+  
+  /* Custom scrollbar for main content */
+  .scrollbar-theme {
+    scrollbar-width: thin;
+    scrollbar-color: #2C5F2D #f1f5f9;
+  }
+  .scrollbar-theme::-webkit-scrollbar {
+    width: 8px;
+  }
+  .scrollbar-theme::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+  }
+  .scrollbar-theme::-webkit-scrollbar-thumb {
+    background: #2C5F2D;
+    border-radius: 4px;
+  }
+  .scrollbar-theme::-webkit-scrollbar-thumb:hover {
+    background: #97BC62;
   }
 }

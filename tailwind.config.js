@@ -23,11 +23,36 @@ export default {
           900: '#0f172a'
         }
       },
-      fontFamily: {
+fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui'],
         heading: ['Playfair Display', 'serif']
       }
     },
   },
+  plugins: [
+    function({ addUtilities }) {
+      const newUtilities = {
+        '.scrollbar-custom': {
+          'scrollbar-width': 'thin',
+          'scrollbar-color': '#2C5F2D #f1f5f9',
+        },
+        '.scrollbar-custom::-webkit-scrollbar': {
+          'width': '8px',
+        },
+        '.scrollbar-custom::-webkit-scrollbar-track': {
+          'background': '#f1f5f9',
+          'border-radius': '4px',
+        },
+        '.scrollbar-custom::-webkit-scrollbar-thumb': {
+          'background': '#2C5F2D',
+          'border-radius': '4px',
+        },
+        '.scrollbar-custom::-webkit-scrollbar-thumb:hover': {
+          'background': '#97BC62',
+        },
+      }
+      addUtilities(newUtilities)
+    }
+  ],
   plugins: [],
 }

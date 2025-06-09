@@ -4,12 +4,12 @@ import { toast } from 'react-toastify';
 import ApperIcon from './ApperIcon';
 import ContactAgentForm from './ContactAgentForm';
 import ScheduleViewingForm from './ScheduleViewingForm';
+import ImageGallery from './ImageGallery';
 import NeighborhoodStats from './NeighborhoodStats';
 import MortgageCalculator from './MortgageCalculator';
 import { favoriteService } from '../services';
 
 const PropertyDetailModal = ({ property, onClose }) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isFavorite, setIsFavorite] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showContactForm, setShowContactForm] = useState(false);
@@ -53,20 +53,7 @@ const PropertyDetailModal = ({ property, onClose }) => {
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => 
-      prev === property.images.length - 1 ? 0 : prev + 1
-    );
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => 
-      prev === 0 ? property.images.length - 1 : prev - 1
-    );
-  };
-
+};
   const formatPrice = (price) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -131,64 +118,14 @@ const PropertyDetailModal = ({ property, onClose }) => {
                 <ApperIcon name="X" size={20} />
               </button>
             </div>
-          </div>
+</div>
 
-          {/* Image Gallery */}
-          <div className="relative h-96 bg-gray-100">
-            <img
-              src={property.images[currentImageIndex]}
-              alt={`${property.title} - Image ${currentImageIndex + 1}`}
-              className="w-full h-full object-cover"
-            />
-            
-            {/* Navigation Arrows */}
-            {property.images.length > 1 && (
-              <>
-                <button
-                  onClick={prevImage}
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-colors"
-                >
-                  <ApperIcon name="ChevronLeft" size={20} />
-                </button>
-                <button
-                  onClick={nextImage}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-colors"
-                >
-                  <ApperIcon name="ChevronRight" size={20} />
-                </button>
-              </>
-            )}
-
-            {/* Image Counter */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
-              {currentImageIndex + 1} of {property.images.length}
-            </div>
-          </div>
-
-          {/* Thumbnail Strip */}
-          {property.images.length > 1 && (
-            <div className="p-4 border-b border-gray-200">
-              <div className="flex gap-2 overflow-x-auto scrollbar-hide">
-                {property.images.map((image, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentImageIndex(index)}
-                    className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
-                      index === currentImageIndex
-                        ? 'border-primary'
-                        : 'border-gray-200 hover:border-gray-300'
-                    }`}
-                  >
-                    <img
-                      src={image}
-                      alt={`Thumbnail ${index + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
+          {/* Enhanced Image Gallery */}
+          <ImageGallery
+            images={property.images}
+            propertyTitle={property.title}
+            initialIndex={0}
+          />
 
           {/* Property Details */}
           <div className="p-6">

@@ -55,6 +55,50 @@ body {
     border-radius: 4px;
   }
   .scrollbar-theme::-webkit-scrollbar-thumb:hover {
-    background: #97BC62;
+background: #97BC62;
+  }
+  
+  /* Image Gallery Styles */
+  .gallery-fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    background: black;
+  }
+  
+  .gallery-zoom-container {
+    overflow: auto;
+    cursor: grab;
+  }
+  
+  .gallery-zoom-container:active {
+    cursor: grabbing;
+  }
+  
+  .gallery-image-zoomed {
+    cursor: grab;
+    user-select: none;
+  }
+  
+  .gallery-image-zoomed:active {
+    cursor: grabbing;
+  }
+  
+  /* Smooth zoom transitions */
+  .gallery-image-smooth {
+    transition: transform 0.2s ease-out;
+  }
+  
+  /* Touch gesture support */
+  .gallery-touch {
+    touch-action: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
 }

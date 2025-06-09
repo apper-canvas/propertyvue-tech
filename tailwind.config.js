@@ -26,10 +26,28 @@ export default {
 fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui'],
         heading: ['Playfair Display', 'serif']
+      },
+      animation: {
+        'zoom-in': 'zoomIn 0.2s ease-out',
+        'zoom-out': 'zoomOut 0.2s ease-out',
+      },
+      keyframes: {
+        zoomIn: {
+          '0%': { transform: 'scale(1)' },
+          '100%': { transform: 'scale(1.1)' },
+        },
+        zoomOut: {
+          '0%': { transform: 'scale(1.1)' },
+          '100%': { transform: 'scale(1)' },
+        },
+      },
+      cursor: {
+        'zoom-in': 'zoom-in',
+        'zoom-out': 'zoom-out',
       }
     },
   },
-  plugins: [
+plugins: [
     function({ addUtilities }) {
       const newUtilities = {
         '.scrollbar-custom': {
@@ -50,9 +68,27 @@ fontFamily: {
         '.scrollbar-custom::-webkit-scrollbar-thumb:hover': {
           'background': '#97BC62',
         },
+        '.gallery-zoom': {
+          'cursor': 'zoom-in',
+        },
+        '.gallery-zoom-out': {
+          'cursor': 'zoom-out',
+        },
+        '.gallery-dragging': {
+          'cursor': 'grabbing',
+          'user-select': 'none',
+        },
+        '.touch-pan-y': {
+          'touch-action': 'pan-y',
+        },
+        '.touch-pan-x': {
+          'touch-action': 'pan-x',
+        },
+        '.touch-manipulation': {
+          'touch-action': 'manipulation',
+        }
       }
       addUtilities(newUtilities)
     }
   ],
-  plugins: [],
 }

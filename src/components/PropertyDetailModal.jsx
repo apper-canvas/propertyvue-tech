@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import ApperIcon from './ApperIcon';
 import ContactAgentForm from './ContactAgentForm';
 import NeighborhoodStats from './NeighborhoodStats';
+import MortgageCalculator from './MortgageCalculator';
 import { favoriteService } from '../services';
 const PropertyDetailModal = ({ property, onClose }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -275,10 +276,13 @@ const PropertyDetailModal = ({ property, onClose }) => {
 </div>
             </div>
 
-            {/* Neighborhood Stats */}
+{/* Neighborhood Stats */}
             <NeighborhoodStats property={property} />
 
-{/* Contact Actions */}
+            {/* Mortgage Calculator */}
+            <MortgageCalculator property={property} />
+
+            {/* Contact Actions */}
             <div className="border-t border-gray-200 pt-6">
               <div className="flex flex-col sm:flex-row gap-3">
                 <motion.button

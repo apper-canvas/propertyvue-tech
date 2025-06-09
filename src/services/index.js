@@ -1,15 +1,8 @@
-import propertyService from './api/propertyService';
-import favoriteService from './api/favoriteService';
-import contactService from './api/contactService';
-import neighborhoodService from './api/neighborhoodService';
+export { propertyService } from './api/propertyService';
+export { favoriteService } from './api/favoriteService';
+export { contactService } from './api/contactService';
+export { neighborhoodService } from './api/neighborhoodService';
+export { mortgageService } from './api/mortgageService';
 
-// Utility function for simulating network delays
+// Export all services for easy import
 export const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
-// Export all services
-export {
-  propertyService,
-  favoriteService,
-  contactService,
-  neighborhoodService
-};

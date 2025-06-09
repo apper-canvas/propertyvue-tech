@@ -1,4 +1,5 @@
-import { delay } from '../index';
+// Local delay function to avoid circular dependency
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 const STORAGE_KEY = 'propertyvue_favorites';
 
@@ -80,4 +81,6 @@ const favoriteService = {
   }
 };
 
+// Export both default and named export for consistency
 export default favoriteService;
+export { favoriteService };

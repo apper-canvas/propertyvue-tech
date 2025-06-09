@@ -1,4 +1,5 @@
-import { delay } from '../index';
+// Local delay utility to avoid circular dependency
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 // Mock neighborhood data that would typically come from external APIs
 const mockSchools = [
@@ -170,3 +171,4 @@ const neighborhoodService = {
 };
 
 export default neighborhoodService;
+export { neighborhoodService };

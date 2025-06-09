@@ -3,14 +3,17 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'react-toastify';
 import ApperIcon from './ApperIcon';
 import ContactAgentForm from './ContactAgentForm';
+import ScheduleViewingForm from './ScheduleViewingForm';
 import NeighborhoodStats from './NeighborhoodStats';
 import MortgageCalculator from './MortgageCalculator';
 import { favoriteService } from '../services';
+
 const PropertyDetailModal = ({ property, onClose }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isFavorite, setIsFavorite] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showContactForm, setShowContactForm] = useState(false);
+  const [showScheduleForm, setShowScheduleForm] = useState(false);
   useEffect(() => {
     checkFavoriteStatus();
     // Prevent body scroll when modal is open
@@ -295,23 +298,34 @@ const PropertyDetailModal = ({ property, onClose }) => {
                   {showContactForm ? "Hide Contact Form" : "Contact Agent"}
                 </motion.button>
                 
-                <motion.button
+<motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
+                  onClick={() => setShowScheduleForm(!showScheduleForm)}
                   className="flex-1 bg-secondary text-white px-6 py-3 rounded-lg font-medium hover:bg-secondary/90 transition-colors flex items-center justify-center gap-2"
                 >
-                  <ApperIcon name="Calendar" size={18} />
-                  Schedule Viewing
+                  <ApperIcon name={showScheduleForm ? "ChevronUp" : "Calendar"} size={18} />
+                  {showScheduleForm ? "Hide Schedule Form" : "Schedule Viewing"}
                 </motion.button>
               </div>
             </div>
 
-            {/* Contact Agent Form */}
+{/* Contact Agent Form */}
             <AnimatePresence>
               {showContactForm && (
                 <ContactAgentForm 
                   property={property} 
                   onSuccess={() => setShowContactForm(false)}
+                />
+              )}
+            </AnimatePresence>
+
+            {/* Schedule Viewing Form */}
+            <AnimatePresence>
+              {showScheduleForm && (
+                <ScheduleViewingForm 
+                  property={property} 
+                  onSuccess={() => setShowScheduleForm(false)}
                 />
               )}
             </AnimatePresence>

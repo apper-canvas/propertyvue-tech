@@ -1,6 +1,7 @@
 import propertyService from './api/propertyService';
 import favoriteService from './api/favoriteService';
 import contactService from './api/contactService';
+import neighborhoodService from './api/neighborhoodService';
 
 // Utility function for simulating network delays
 export const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
@@ -9,5 +10,6 @@ export const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 export {
   propertyService,
   favoriteService,
-  contactService
+  contactService,
+  neighborhoodService
 };

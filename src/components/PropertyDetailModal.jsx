@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'react-toastify';
 import ApperIcon from './ApperIcon';
 import ContactAgentForm from './ContactAgentForm';
+import NeighborhoodStats from './NeighborhoodStats';
 import { favoriteService } from '../services';
 const PropertyDetailModal = ({ property, onClose }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -271,8 +272,11 @@ const PropertyDetailModal = ({ property, onClose }) => {
                     </div>
                   ))}
                 </div>
-              </div>
+</div>
             </div>
+
+            {/* Neighborhood Stats */}
+            <NeighborhoodStats property={property} />
 
 {/* Contact Actions */}
             <div className="border-t border-gray-200 pt-6">

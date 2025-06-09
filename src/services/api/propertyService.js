@@ -25,6 +25,8 @@ async create(propertyData) {
       id: Date.now().toString(),
       listedDate: new Date().toISOString(),
       status: 'Available',
+      latitude: propertyData.latitude || 40.7128 + (Math.random() - 0.5) * 0.1,
+      longitude: propertyData.longitude || -74.0060 + (Math.random() - 0.5) * 0.1,
       agent: {
         name: 'John Smith',
         email: 'john.smith@propertyvue.com',

@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'react-toastify';
 import ApperIcon from './ApperIcon';
+import ContactAgentForm from './ContactAgentForm';
 import { favoriteService } from '../services';
-
 const PropertyDetailModal = ({ property, onClose }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isFavorite, setIsFavorite] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [showContactForm, setShowContactForm] = useState(false);
   useEffect(() => {
     checkFavoriteStatus();
     // Prevent body scroll when modal is open
@@ -274,16 +274,17 @@ const PropertyDetailModal = ({ property, onClose }) => {
               </div>
             </div>
 
-            {/* Contact Actions */}
+{/* Contact Actions */}
             <div className="border-t border-gray-200 pt-6">
               <div className="flex flex-col sm:flex-row gap-3">
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
+                  onClick={() => setShowContactForm(!showContactForm)}
                   className="flex-1 bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors flex items-center justify-center gap-2"
                 >
-                  <ApperIcon name="Phone" size={18} />
-                  Contact Agent
+                  <ApperIcon name={showContactForm ? "ChevronUp" : "MessageCircle"} size={18} />
+                  {showContactForm ? "Hide Contact Form" : "Contact Agent"}
                 </motion.button>
                 
                 <motion.button
@@ -296,6 +297,16 @@ const PropertyDetailModal = ({ property, onClose }) => {
                 </motion.button>
               </div>
             </div>
+
+            {/* Contact Agent Form */}
+            <AnimatePresence>
+              {showContactForm && (
+                <ContactAgentForm 
+                  property={property} 
+                  onSuccess={() => setShowContactForm(false)}
+                />
+              )}
+            </AnimatePresence>
           </div>
         </motion.div>
       </motion.div>

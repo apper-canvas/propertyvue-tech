@@ -18,13 +18,19 @@ const propertyService = {
     return { ...property };
   },
 
-  async create(propertyData) {
+async create(propertyData) {
     await delay(400);
     const newProperty = {
       ...propertyData,
       id: Date.now().toString(),
       listedDate: new Date().toISOString(),
-      status: 'Available'
+      status: 'Available',
+      agent: {
+        name: 'John Smith',
+        email: 'john.smith@propertyvue.com',
+        phone: '(555) 123-4567',
+        image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face'
+      }
     };
     properties.push(newProperty);
     return { ...newProperty };

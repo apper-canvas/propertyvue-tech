@@ -1,5 +1,13 @@
-export { default as propertyService } from './api/propertyService';
-export { default as favoriteService } from './api/favoriteService';
+import propertyService from './api/propertyService';
+import favoriteService from './api/favoriteService';
+import contactService from './api/contactService';
 
-const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-export { delay };
+// Utility function for simulating network delays
+export const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+// Export all services
+export {
+  propertyService,
+  favoriteService,
+  contactService
+};
